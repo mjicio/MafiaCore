@@ -1,0 +1,7 @@
+name: MafiaCore
+version: '1.0'
+main: it.mjicio.plugin.MafiaCore
+api-version: '1.20'
+commands:
+  adminmafia:
+    description: Admin mafia command
