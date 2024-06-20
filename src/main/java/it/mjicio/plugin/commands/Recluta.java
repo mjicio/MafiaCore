@@ -21,19 +21,7 @@ public class Recluta implements CommandExecutor {
 
                 if(args[0].equals("recluta")) {
 
-                    if(plugin.getMafie().get().getStringList("mafie").contains(args[1])) {
 
-                        if(Bukkit.getPlayer(args[2]) != null){
-
-                            if(p.hasPermission("mafia.recluta." + args[1]) || p.hasPermission("mafia.admin.recluta")) {
-
-
-
-                            }
-
-                        }
-
-                    }
 
                 }
 
