@@ -7,8 +7,8 @@ public class CoreDB {
     private String playerUUID;
 
     //random stats on each player
-    private int deaths;
-    private int kills;
+    private String nomeMafia;
+    private String bossmafia;
     private long blocksBroken;
     private double balance;
 
@@ -16,10 +16,10 @@ public class CoreDB {
     private Date lastLogin;
     private Date lastLogout;
 
-    public CoreDB(String playerUUID, int deaths, int kills, long blocksBroken, double balance, Date lastLogin, Date lastLogout) {
+    public CoreDB(String playerUUID, String nomeMafia, String bossmafia, Date lastLogin, Date lastLogout) {
         this.playerUUID = playerUUID;
-        this.deaths = deaths;
-        this.kills = kills;
+        this.nomeMafia = nomeMafia;
+        this.bossmafia = bossmafia;
         this.blocksBroken = blocksBroken;
         this.balance = balance;
         this.lastLogin = lastLogin;
@@ -32,22 +32,6 @@ public class CoreDB {
 
     public void setPlayerUUID(String playerUUID) {
         this.playerUUID = playerUUID;
-    }
-
-    public int getDeaths() {
-        return deaths;
-    }
-
-    public void setDeaths(int deaths) {
-        this.deaths = deaths;
-    }
-
-    public int getKills() {
-        return kills;
-    }
-
-    public void setKills(int kills) {
-        this.kills = kills;
     }
 
     public long getBlocksBroken() {

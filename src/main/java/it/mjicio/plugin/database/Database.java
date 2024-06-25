@@ -35,7 +35,7 @@ public class Database {
         Statement statement = getConnection().createStatement();
 
         //Create the plugin.getConfig().getString("database-name") table
-        String sql = "CREATE TABLE IF NOT EXISTS " + plugin.getConfig().getString("database-name") + "(uuid varchar(36) primary key, mafia string, boss-mafia string, roles string, last_login DATE, last_logout DATE)";
+        String sql = "CREATE TABLE IF NOT EXISTS " + plugin.getConfig().getString("database-name") + "(uuid varchar(36) primary key, mafiaName string, boss-mafia string, last_login DATE)";
 
         statement.execute(sql);
 
@@ -54,7 +54,7 @@ public class Database {
 
         if(resultSet.next()){
 
-            mafiaCore = new CoreDB(resultSet.getString("uuid"), resultSet.getInt("deaths"), resultSet.getInt("kills"), resultSet.getLong("blocks_broken"), resultSet.getDouble("balance"), resultSet.getDate("last_login"), resultSet.getDate("last_logout"));
+            mafiaCore = new CoreDB(resultSet.getString("uuid"), resultSet.getString("mafiaName"), resultSet.getString("bossmafia"), resultSet.getDate("last_login"), resultSet.getDate("last_logout"));
 
             statement.close();
 
@@ -71,8 +71,6 @@ public class Database {
         PreparedStatement statement = getConnection()
                 .prepareStatement("INSERT INTO " + plugin.getConfig().getString("database-name") + "(uuid, deaths, kills, blocks_broken, balance, last_login, last_logout) VALUES (?, ?, ?, ?, ?, ?, ?)");
         statement.setString(1, mafiaCore.getPlayerUUID());
-        statement.setInt(2, mafiaCore.getDeaths());
-        statement.setInt(3, mafiaCore.getKills());
         statement.setLong(4, mafiaCore.getBlocksBroken());
         statement.setDouble(5, mafiaCore.getBalance());
         statement.setDate(6, new Date(mafiaCore.getLastLogin().getTime()));
@@ -86,9 +84,7 @@ public class Database {
 
     public void updateCoreDB(CoreDB mafiaCore) throws SQLException {
 
-        PreparedStatement statement = getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database-name") + " SET deaths = ?, kills = ?, blocks_broken = ?, balance = ?, last_login = ?, last_logout = ? WHERE uuid = ?");
-        statement.setInt(1, mafiaCore.getDeaths());
-        statement.setInt(2, mafiaCore.getKills());
+        PreparedStatement statement = getConnection().prepareStatement("UPDATE " + plugin.getConfig().getString("database-name") + " SET mafiaName = ?, bossmafia = ?, blocks_broken = ?, balance = ?, last_login = ?, last_logout = ? WHERE uuid = ?");
         statement.setLong(3, mafiaCore.getBlocksBroken());
         statement.setDouble(4, mafiaCore.getBalance());
         statement.setDate(5, new Date(mafiaCore.getLastLogin().getTime()));

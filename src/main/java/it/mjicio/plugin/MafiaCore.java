@@ -24,7 +24,7 @@ public final class MafiaCore extends JavaPlugin {
             this.database.initializeDatabase();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Could not initialize database.");
+            System.out.println("Could not initialize database");
         }
 
         System.out.println("MafiaCore Abilitato");
